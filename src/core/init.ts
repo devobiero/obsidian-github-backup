@@ -9,14 +9,14 @@ export function backup(
   remote: string,
   execOptions: CommandConfig,
 ) {
-  const isGitSync = (fullPath: string) =>
-    fs.existsSync(path.join(fullPath, '.git'));
+  const isGitEnabled = (fullPath: string) => fs.existsSync(path.join(fullPath, '.git'));
+  isGitEnabled(fullPath) ? add(execOptions) : init(remote, execOptions);
+}
 
-  if (!isGitSync(fullPath)) {
-    execGitCmd(['init'], execOptions)
-      .then((_result) => addRemoteOrigin(remote, execOptions))
-      .catch((error) => console.error('Command execution failed: ', error));
-  }
+export function init(remote: string, execOptions: CommandConfig) {
+  execGitCmd(['init'], execOptions)
+    .then((_result) => addRemoteOrigin(remote, execOptions))
+    .catch((error) => console.error('Command execution failed: ', error));
 }
 
 export function addRemoteOrigin(remote: string, execOptions: CommandConfig) {
