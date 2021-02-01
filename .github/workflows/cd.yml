@@ -1,0 +1,37 @@
+name: Obsidian Github CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - name: Install dependencies
+        run: yarn
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+          registry-url: https://registry.npmjs.org/
+      - name: Install dependencies
+        run: yarn
+      - name: Create .npmrc file
+        run: |
+          echo "registry=https://registry.yarnpkg.com/" > .npmrc
+          echo "@devobiero:registry=https://npm.pkg.github.com" >> .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{secrets.TOKEN}}" >> .npmrc
+          echo "always-auth=true" >> .npmrc
+      - run: yarn publish

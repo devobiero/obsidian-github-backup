@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "build": "rm -rf dist && tsc",
+    "prepublish": "yarn build",
     "format": "prettier --write \"**/*.+(ts)\""
   },
   "author": "",
