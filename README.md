@@ -8,11 +8,11 @@ A command line tool that can be scheduled to backup static files e.g obsidian ma
 
 Using `npm`
 ```bash
-npm install -g "@devobiero/obsidian-github-backup"
+npm install -g  @devobiero/obisidian-github-backup@latest
 ```
 
 Using `yarn`
 ```bash
-yarn global add "@devobiero/obsidian-github-backup"
+yarn global add  @devobiero/obisidian-github-backup@latest
 
 ```
