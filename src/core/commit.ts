@@ -13,7 +13,7 @@ export function add(execOptions: CommandConfig) {
 }
 
 export function commit(execOptions: CommandConfig) {
-  execGitCmd(['commit', '-m', 'Initial commit'], execOptions)
+  execGitCmd(['commit', '-m', `🔥 ${new Date().toISOString}`], execOptions)
     .then((_result) => push(execOptions))
     .catch((error) => console.error('Command execution failed: ', error));
 }
