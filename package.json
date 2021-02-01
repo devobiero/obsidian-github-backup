@@ -8,6 +8,13 @@
     "dist/**/*",
     "bin/**/*"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devobiero/obsidian-github-backup.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "scripts": {
     "build": "rm -rf dist && tsc",
     "prepublish": "yarn build",
