@@ -9,7 +9,9 @@ export function backup(
   remote: string,
   execOptions: CommandConfig,
 ) {
-  const isGitEnabled = (fullPath: string) => fs.existsSync(path.join(fullPath, '.git'));
+  const isGitEnabled = (fullPath: string) =>
+    fs.existsSync(path.join(fullPath, '.git'));
+    
   isGitEnabled(fullPath) ? add(execOptions) : init(remote, execOptions);
 }
 
